@@ -27,7 +27,6 @@ public class DBUtil2 {
 			prop.load(fin);
 
 //			Class.forName("oracle.jdbc.driver.OracleDriver");
-
 			Class.forName(prop.getProperty("driver"));
 
 		} catch (ClassNotFoundException e) {
@@ -49,7 +48,6 @@ public class DBUtil2 {
 
 		try {
 //			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "PC_24_04", "java");
-
 			conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"),
 					prop.getProperty("pass"));
 		} catch (SQLException e) {
