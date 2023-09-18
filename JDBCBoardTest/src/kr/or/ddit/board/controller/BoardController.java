@@ -51,27 +51,30 @@ public class BoardController {
 	// 이 메서드를 통해 열람한 게시물의 조회수가 하나 올라간다
 	private void read() {
 		
+		int cntlook; // 조회수 저장 할 변수	
+		
 		System.out.println("	* 게시물 보기 *");
 		System.out.println("-----------------------------------");
 		
 		System.out.print("보기를 원하는 게시물 번호 입력 >>");
 		int boardNo = scan.nextInt();
 		
-		int cnt; // 조회수 저장 할 변수	
+		List<BoardVO> borList = service.getABoard(boardNo);
 		
-		// 키값인 게시물 번호를 따라 쿼리문을 통해 가져온 데이터 정보..
+		BoardVO borVo = borList.get(0);
 		
-		String title = 
+		cntlook = borVo.getBoard_cnt();
+		cntlook++;
 		 
-		
 		System.out.println(boardNo+"번글 내용");
 		System.out.println("------------------------------------------------------------");
-		System.out.println("- 제  목 : "+title);
-		System.out.println("- 작성자 : "+);
-		System.out.println("- 내  용 : "+);
-		System.out.println("- 작성일 : "+);
-		System.out.println("- 조회수 : "+cnt);
-		
+		System.out.println("- 제  목 : "+borVo.getBoard_title());
+		System.out.println("- 작성자 : "+borVo.getBoard_writer());
+		System.out.println("- 내  용 : "+borVo.getBoard_content());
+		System.out.println("- 작성일 : "+borVo.getBoard_date());
+		System.out.println("- 조회수 : " + cntlook);
+		System.out.println("------------------------------------------------------------");
+
 		
 	}
 

@@ -37,4 +37,11 @@ public interface IBoardDao {
 	 * @return : MemberVO 객체가 저장된 List
 	 */
 	public List<BoardVO> getABoard(int board_no);
+	
+	/**
+	 * 조회 시 하나 더한 값으로 업데이트하는 메소드
+	 * @param borVO : 조회수 데이터
+	 * @return : 작업 성공시 1, 실패시 0
+	 */
+	public int updateCnt(BoardVO borVO);
 }

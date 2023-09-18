@@ -208,4 +208,34 @@ public class BoardDaoImpl implements IBoardDao {
 		return borList;
 	}
 
+	public int updateCnt(BoardVO borVO) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int cnt = 0;
+		
+		try {
+			conn = DBUtil3.getConnection();
+			
+			String sql = "UPDATE jdbc_board SET BOARD_CNT = ? WHERE BORARD_NO = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, borVO.getBoard_cnt());
+			pstmt.setInt(2, borVO.getBoard_no());
+			
+			cnt = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return cnt;
+	}
 }

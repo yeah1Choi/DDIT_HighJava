@@ -28,4 +28,14 @@ public class BoardServiceImpl implements IBoardService {
 	public List<BoardVO> searchBoard(String keyword) {
 		return dao.searchBoard(keyword);
 	}
+
+	@Override
+	public List<BoardVO> getABoard(int board_no) {
+		return dao.getABoard(board_no);
+	}
+
+	@Override
+	public int updateCnt(BoardVO borVO) {
+		return dao.updateCnt(borVO);
+	}
 }
