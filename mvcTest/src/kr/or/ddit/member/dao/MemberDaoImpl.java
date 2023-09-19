@@ -13,6 +13,18 @@ import kr.or.ddit.vo.MemberVO;
 
 public class MemberDaoImpl implements IMemberDao {
 
+	// 싱글톤 1)
+	private static MemberDaoImpl dao;
+	
+	// 싱글톤 2)
+	private MemberDaoImpl() {}
+	
+	// 싱글톤 3)
+	public static MemberDaoImpl getInstance() {
+		if(dao == null) dao = new MemberDaoImpl();
+		return dao;
+	}
+	
 	@Override
 	public int insertMember(MemberVO memVo) {
 		Connection conn = null;

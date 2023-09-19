@@ -16,7 +16,8 @@ public class MemberController {
 
 	// 생성자
 	public MemberController() {
-		service = new MemberServiceImpl();
+		//service = new MemberServiceImpl();
+		service = MemberServiceImpl.getInstance();
 	}
 
 	public static void main(String[] args) {

@@ -11,12 +11,21 @@ public class MemberServiceImpl implements IMemberService {
 
 	private IMemberDao dao; // DAO객체 변수 선언
 	
+	private static MemberServiceImpl service; // 싱글톤 1)
 	
-	// 생성자
-	public MemberServiceImpl() {
-		dao = new MemberDaoImpl();
+	// 싱글톤 2) 생성자
+	//public MemberServiceImpl() {
+	private MemberServiceImpl() {
+		//dao = new MemberDaoImpl();
+		dao = MemberDaoImpl.getInstance();
 	}
-
+	
+	// 3)
+	public static MemberServiceImpl getInstance() {
+		if(service == null) service = new MemberServiceImpl();
+		return service;
+	}
+	
 	@Override
 	public int insertMember(MemberVO memVo) {
 		return dao.insertMember(memVo);

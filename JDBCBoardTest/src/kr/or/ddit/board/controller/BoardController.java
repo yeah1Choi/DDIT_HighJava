@@ -6,7 +6,6 @@ import java.util.Scanner;
 import kr.or.ddit.board.service.BoardServiceImpl;
 import kr.or.ddit.board.service.IBoardService;
 import kr.or.ddit.vo.BoardVO;
-import kr.or.ddit.vo.MemberVO;
 
 public class BoardController {
 
@@ -75,7 +74,19 @@ public class BoardController {
 		System.out.println("- 조회수 : " + cntlook);
 		System.out.println("------------------------------------------------------------");
 
+		// 조회수 다시 저장
+		BoardVO borVO2 = new BoardVO();
 		
+		borVO2.setBoard_cnt(cntlook);
+		borVO2.setBoard_no(boardNo);
+		
+		int cnt = service.updateCnt(borVO2);
+		
+		if (cnt > 0) {
+			System.out.println("조회수 데이터가 성공적으로 수정되었습니다.");
+		} else {
+			System.out.println("조회수 데이터 수정을 실패했습니다.");
+		}
 	}
 
 	// 새글 작성 메서드
