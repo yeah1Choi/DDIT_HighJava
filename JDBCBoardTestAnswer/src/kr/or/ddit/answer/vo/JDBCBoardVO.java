@@ -7,6 +7,7 @@ public class JDBCBoardVO {
 	private String board_date;
 	private int board_cnt;
 	private String board_content;
+	
 	public int getBoard_no() {
 		return board_no;
 	}

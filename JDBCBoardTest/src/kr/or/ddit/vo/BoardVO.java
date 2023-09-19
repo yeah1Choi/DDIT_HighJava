@@ -1,12 +1,10 @@
 package kr.or.ddit.vo;
 
-import java.sql.Date;
-
 public class BoardVO {
 	public int board_no;
 	public String board_title;
 	public String board_writer;
-	public Date board_date;
+	public String board_date;
 	public int board_cnt;
 	public String board_content;
 	
@@ -35,10 +33,10 @@ public class BoardVO {
 	public void setBoard_no(int board_no) {
 		this.board_no = board_no;
 	}
-	public Date getBoard_date() {
+	public String getBoard_date() {
 		return board_date;
 	}
-	public void setBoard_date(Date date) {
+	public void setBoard_date(String date) {
 		this.board_date = date;
 	}
 	public int getBoard_cnt() {

@@ -10,8 +10,15 @@ public class BoardServiceImpl implements IBoardService {
 	
 	private IBoardDao dao;
 	
+	private static BoardServiceImpl service;
+	
 	public BoardServiceImpl() {
-		dao = new BoardDaoImpl();
+		dao = BoardDaoImpl.getInstance();
+	}
+	
+	public static BoardServiceImpl getInstance() {
+		if(service == null) service = new BoardServiceImpl();
+		return service;
 	}
 
 	@Override
@@ -25,17 +32,30 @@ public class BoardServiceImpl implements IBoardService {
 	}
 
 	@Override
-	public List<BoardVO> searchBoard(String keyword) {
-		return dao.searchBoard(keyword);
+	public List<BoardVO> searchBoard(String title) {
+		return dao.searchBoard(title);
 	}
 
 	@Override
-	public List<BoardVO> getABoard(int board_no) {
+	public BoardVO getABoard(int board_no) {
+		int cnt = dao.increseCnt(board_no);
+		if(cnt == 0) return null;
+	
 		return dao.getABoard(board_no);
 	}
 
 	@Override
-	public int updateCnt(BoardVO borVO) {
-		return dao.updateCnt(borVO);
+	public int increseCnt(int board_no) {
+		return dao.increseCnt(board_no);
+	}
+
+	@Override
+	public int deleteBoard(int board_no) {
+		return dao.deleteBoard(board_no);
+	}
+
+	@Override
+	public int updateBoard(BoardVO borVO) {
+		return dao.updateBoard(borVO);
 	}
 }
