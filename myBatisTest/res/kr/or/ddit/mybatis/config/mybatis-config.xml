@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 이 문서는 MyBatis의 환경 설정을 구성하는 문서입니다. -->
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org/DTO Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- DB연결 정보가 저장된 properties파일에 대한 정보를 설정한다 -->
+	<properties resource="kr/or/ddit/mybatis/config/dbinfo.properties"/>
+	
+	<!-- MyBatis 설정과 관련된 기본 settings 설정 -->
+	<settings>
+		<!-- 데이터가 null로 전달되었으면 빈 칸으로 인식하지 말고 null로 인식하게함 -->
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+	
+	<!-- 
+		MyBatis에서 파라미터로 사용하는 객체는 패키지명을 포함한 전체 이름을 지정해야한다.
+		그러면, 전체 이름이 너무 길어질 수 있어서 이것을 짧은 이름으로 사용하기 위한
+		별칭을 설정할 수 있다.
+		형식 : <typeAlias type="패키지명이 포함된 전체 클래스명" alias = "별칭이름"/>
+	 -->
+	 <typeAliases>
+	 	<typeAlias type="kr.or.ddit.vo.LprodVO" alias="lprodVo"/>
+	 </typeAliases>
+	 
+	 <!-- DB연결 설정 -->
+	 <environments default="oracleDev">
+	 	<environment id="oracleDev">
+	 		<!-- 오라클용 -->
+	 		<transactionManager type="JDBC"/>
+	 		<dataSource type="POOLED">
+	 			<property name="driver" value="${driver}"/>
+	 			<property name="url" value="${url}"/>
+	 			<property name="username" value="${user}"/>
+	 			<property name="password" value="${pass}"/>
+	 		</dataSource>
+	 	</environment>
+	 </environments>
+	 
+	 <!-- DB에서 처리될 SQL문들이 작성된 mapper파일들을 등록하는 부분 -->
+	 <!-- 형식 : <mapper resource="경로명/파일명.xml"/> -->
+	 <mappers>
+	 	<mapper  resource="kr/or/ddit/mybatis/mappers/lprod-mapper.xml"/>
+	 </mappers>
+	 
+</configuration>

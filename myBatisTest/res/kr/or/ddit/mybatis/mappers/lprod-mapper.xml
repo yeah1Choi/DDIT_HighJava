@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 이 문서는 MyBatis에서 처리할 SQL문을 작성하는 문서 -->
+<!DOCTYPE mapper
+	PUBLIC "-//mtbatis.org//DTO Mapper 3.0/EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	<mapper>태그의 namespace 속성값은 이 문서에 작성된 SQL문을 호출할 때
+	같이 사용되는 이름이다
+ -->
+<mapper namespace="lprod">
+	<!-- 
+		이 <mapper>태그 영역 안에는 처리할 SQL문에 맞는 태그를 사용해서 SQL문을 작성한다
+		
+		* 사용할 수 있는 태그들
+		<select> ~ select 구문 ~ </select>
+		<insert> ~ insert 구문 ~ </insert>
+		<update> ~ update 구문 ~ </update>
+		<delete> ~ delete 구문 ~ </delete> 등...
+	 -->
+	 
+	 <!-- 
+	 	* id 속성 : 실행할 SQL문이 작성된 태그를 Java소스에서 호출할 때 사용되는 이름으로
+	 	위의 <mapper>태그의 namespace 속성값과 연결해서 사용한다
+	 	예 ) "lprod.insertLprod"	
+	 	
+	 	* parameterType 속성 : 작성된 SQL문에 사용될 데이터가 들어있는 객체정보를 기술한다.
+	 		(보통  VO 클래스, Java의 기본 자료형 이름, Map 객체 등이 사용된다.)
+	 		(VO 클래스 등을 기술할 때는 해당 클래스의 패키지명을 포함한 전체 이름을 기술해야 한다.)
+	 		(이 속성에는 <typeAlias>태그에서 지정한 'alias속성값'을 사용할 수 있다)
+	  -->
+	  <insert id="insertLprod" parameterType="kr.or.ddit.vo.LprodVO">
+	  	insert into lprod (Lprod_id, lprod_gu, lprod_nm)
+	  	values (#{lprod_id},#{lprod_gu},#{lprod_nm})
+	  </insert>
+</mapper>
