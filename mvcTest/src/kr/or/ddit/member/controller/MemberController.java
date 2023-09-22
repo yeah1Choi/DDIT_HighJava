@@ -148,7 +148,7 @@ public class MemberController {
 		memVO.setMem_tel(telInput);
 		memVO.setMem_addr(addrInput);
 
-		int cnt = service.insertMember(memVO);
+		int cnt = service.updateMember(memVO);
 
 		if (cnt > 0) {
 			System.out.println("데이터가 성공적으로 수정되었습니다.");

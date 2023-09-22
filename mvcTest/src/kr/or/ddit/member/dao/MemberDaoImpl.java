@@ -8,11 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import kr.or.ddit.util.DBUtil3;
 import kr.or.ddit.vo.MemberVO;
 
 public class MemberDaoImpl implements IMemberDao {
 
+	private static final Logger logger = Logger.getLogger(MemberDaoImpl.class);
+	
 	// 싱글톤 1)
 	private static MemberDaoImpl dao;
 	
@@ -34,7 +38,10 @@ public class MemberDaoImpl implements IMemberDao {
 		try {
 			conn = DBUtil3.getConnection();
 
-			String sql = "INSERT INTO MYMEMBER (MEM_ID, MEM_PASS, MEM_NAME, MEM_TEL, MEM_ADDR) VALUES (?, ?, ?, ?, ?)";
+			logger.info("Connection 객체 생성 완료");
+			
+			String sql = "INSERT INTO MYMEMBER (MEM_ID, MEM_PASS, MEM_NAME, "
+					+ "MEM_TEL, MEM_ADDR) VALUES (?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, memVo.getMem_id());
@@ -43,8 +50,16 @@ public class MemberDaoImpl implements IMemberDao {
 			pstmt.setString(4, memVo.getMem_tel());
 			pstmt.setString(5, memVo.getMem_addr());
 
+			logger.debug("PreparedStatement객체 생성완료");
+			logger.debug("실행 SQL : "+sql);
+			logger.debug("사용 데이터 : ["+memVo.getMem_id()+", "+memVo.getMem_pass()+", "
+			+memVo.getMem_name()+", "+memVo.getMem_tel()+", "+memVo.getMem_addr()+"]");
+			
 			cnt = pstmt.executeUpdate();
+			logger.info("실행 작업 성공 ~~");
+			
 		} catch (SQLException e) {
+			logger.error("실행 작업 실패 ~~",e);
 			e.printStackTrace();
 		} finally {
 			try {
@@ -52,6 +67,7 @@ public class MemberDaoImpl implements IMemberDao {
 					pstmt.close();
 				if (conn != null)
 					conn.close();
+				logger.info("자원 반납 완료 ~~");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -65,9 +81,11 @@ public class MemberDaoImpl implements IMemberDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		int cnt = 0;
+		
 
 		try {
 			conn = DBUtil3.getConnection();
+			logger.info("Connection객체 생성 성공 !");
 
 			String sql = "DELETE FROM MYMEMBER WHERE MEM_ID = ?";
 			pstmt = conn.prepareStatement(sql);

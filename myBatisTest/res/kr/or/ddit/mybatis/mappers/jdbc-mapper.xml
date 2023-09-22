@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 이 문서는 MyBatis에서 처리할 SQL문을 작성하는 문서 -->
+<!DOCTYPE mapper
+	PUBLIC "-//mtbatis.org//DTO Mapper 3.0/EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jdbc">
+
+<select id="getMaxId" resultType="int">
+	SELECT NVL(MAX(LPROD_ID),0) MAXNUM FROM LPROD
+</select>
+
+<select id="getLprodGuCnt" parameterType="string" resultType="int">
+	SELECT COUNT(*) CNT FROM LPROD WHERE LPROD_GU = #{LPROD_GU}
+</select>
+
+<insert id="insertLprod" parameterType="lprodVo">
+	insert into lprod (Lprod_id, lprod_gu, lprod_nm)
+	values (#{lprod_id},#{lprod_gu},#{lprod_nm})
+</insert>
+
+<select id="getAllLprod" parameterType="lprodVo">
+	SELECT * FROM LPROD
+</select>
+
+<update id="updateLprodId"  parameterType="int">
+	update lprod set #{lprod_id} = lprod_id + 1
+	where lprod_id = (SELECT NVL(MAX(LPROD_ID),0) FROM LPROD)
+</update>
+
+
+</mapper>
