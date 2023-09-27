@@ -12,12 +12,13 @@ import kr.or.ddit.vo.MemberVO;
 public class MemberController {
 
 	private IMemberService service; // Service객체 변수 선언
-	private Scanner scan = new Scanner(System.in);
+	private Scanner scan;
 
 	// 생성자
 	public MemberController() {
 		//service = new MemberServiceImpl();
 		service = MemberServiceImpl.getInstance();
+		scan = new Scanner(System.in);
 	}
 
 	public static void main(String[] args) {
