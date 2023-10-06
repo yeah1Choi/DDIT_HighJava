@@ -4,8 +4,8 @@
 	PUBLIC "-//mtbatis.org//DTO Mapper 3.0/EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="member">
-	<select id="getLoginMember" parameterType="memberVo" resultType="memberVo">
-		select * from mymember where mem_id = #{mem_id} and mem_pass = #{mem_pass}
-	</select>
+<mapper namespace="lprod">
+	<select id="getAllLprod" resultType="lprodVo">
+	  	select * from lprod
+	  </select>
 </mapper>

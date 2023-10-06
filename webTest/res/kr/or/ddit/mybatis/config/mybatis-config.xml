@@ -21,6 +21,8 @@
 	 -->
 	 <typeAliases>
 	 	<typeAlias type="kr.or.ddit.vo.MemberVO" alias="memberVo"/>
+	 	<typeAlias type="kr.or.ddit.vo.LprodVO" alias="lprodVo"/>
+	 	<typeAlias type="kr.or.ddit.vo.FileInfoVO" alias="fileVo"/>
 	 </typeAliases>
 	 
 	 <!-- DB연결 설정 -->
@@ -41,7 +43,9 @@
 	 <!-- 클래스패스의 상대경로의 리소스 사용 -->
 	 <!-- 형식 : <mapper resource="경로명/파일명.xml"/> -->
 	 <mappers>
+	 	<mapper  resource="kr/or/ddit/mybatis/mappers/lprod-mapper.xml"/>
 	 	<mapper  resource="kr/or/ddit/mybatis/mappers/member-mapper.xml"/>
+	 	<mapper  resource="kr/or/ddit/mybatis/mappers/fileinfo-mapper.xml"/>
 	 </mappers>
 	 
 </configuration>

@@ -1,3 +1,4 @@
+<%@page import="kr.or.ddit.vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,7 +8,7 @@
 <title>Insert title here</title>
 <%
 	// JSP문서에서 HttpSession객체는 'session'이라는 이름으로 이미 생성되어있다.
-String loginId = (String) session.getAttribute("loginId");
+	String loginId = (String) session.getAttribute("loginId");
 %>
 </head>
 <body>

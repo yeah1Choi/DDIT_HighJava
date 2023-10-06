@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 이 문서는 MyBatis에서 처리할 SQL문을 작성하는 문서 -->
+<!DOCTYPE mapper
+	PUBLIC "-//mtbatis.org//DTO Mapper 3.0/EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="fileinfo">
+
+	<insert id="insertFileinfo" parameterType="fileVo">
+		insert into fileinfo (file_no, file_writer, origin_file_name, save_file_name, file_size, file_date)
+		values (fileinfo_seq.nextval, #{file_writer}, #{origin_file_name}, #{save_file_name}, #{file_size}, sysdate)
+	</insert>
+	
+	<select id="getAllFileinfo" resultType="fileVo">
+	  	select * from fileinfo
+	</select>
+	 
+	<select id="getFileinfo" parameterType="int" resultType="fileVo">
+		select * from fileinfo where file_no = #{file_no}
+	</select> 
+</mapper>
