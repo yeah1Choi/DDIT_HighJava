@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 이 문서는 MyBatis에서 처리할 SQL문을 작성하는 문서 -->
+<!DOCTYPE mapper
+	PUBLIC "-//mtbatis.org//DTO Mapper 3.0/EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mymember">
+
+	<insert id="insertMember" parameterType="mymemberVo">
+		insert into mymember (mem_id, mem_pass, mem_name, mem_tel, mem_addr) 
+		values (#{mem_id}, #{mem_pass}, #{mem_name}, #{mem_tel}, #{mem_addr})
+	</insert>
+	
+	<delete id="deleteMemId" parameterType="String">
+		delete from mymember where mem_id = #{mem_id}
+	</delete>
+
+	<update id="updateMember" parameterType="mymemberVo">
+		update mymember set 
+		mem_pass = #{mem_pass}, mem_name = #{mem_name}, 
+		mem_tel = #{mem_tel}, mem_addr = #{mem_addr}
+		where mem_id = #{mem_id}
+	</update>
+	
+	<select id="getAllMember" resultType="mymemberVo">
+		select * from mymember
+	</select>
+	
+	<select id="getMemIdCnt" resultType="int" parameterType="String">
+		select count(*) cnt from mymember where mem_id = #{mem_id}
+	</select>
+	
+	<update id="selectUpdate" parameterType="map">
+		update mymember set ${field} = #{data} where mem_id = #{mem_id}
+	</update>
+</mapper>
